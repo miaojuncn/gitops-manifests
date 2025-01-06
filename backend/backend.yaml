@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-backend
+  namespace: default
+  labels:
+    app: demo-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo-backend
+  template:
+    metadata:
+      labels:
+        app: demo-backend
+    spec:
+      containers:
+        - name: demo-backend
+          image: registry.cn-hangzhou.aliyuncs.com/mj-mirror/backend:8a38273
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: demo-backend-service
+spec:
+  selector:
+    app: demo-backend
+  ports:
+    - port: 5000
+      targetPort: 5000
+      nodePort: 30001
+  type: NodePort
