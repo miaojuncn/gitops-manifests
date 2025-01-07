@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: demo-backend
-          image: registry.cn-hangzhou.aliyuncs.com/mj-mirror/backend:0eec2b0
+          image: registry.cn-hangzhou.aliyuncs.com/mj-mirror/backend:ccc84ed
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 5000
